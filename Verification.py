@@ -1,8 +1,13 @@
 import re
 from datetime import datetime
-from Exceptions import ExactDigitException, InvalidDateValueError, InvalidDateFormatError
+from Exceptions import (
+    InvalidDateValueException,
+    InvalidDateFormatException,
+)
+from constants import NUMBER_OF_DIGITS_IN_PHONE_NUMBER
 
-class Validation:
+
+class Verification:
     def __init__(self, name):
         self.name = name
 
@@ -11,19 +16,20 @@ def name_validation(name):
 
 
 def phone_number_validation(phone_number):
-    if phone_number.isdigit() and len(phone_number) == 3:
-        return True
-    else:
-        raise ExactDigitException
+    # TODO: consider not throwing an exception and return False with ternary operator - done
+    return True if phone_number.isdigit() and len(phone_number) == NUMBER_OF_DIGITS_IN_PHONE_NUMBER else False
 
-def email_verification(email):
+
+def email_validation(email):
     return True if bool(re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$', email)) else False
 
-def birthday_verification(birthday):
+
+def birthday_validation(birthday):
     if bool(re.match(r'\d{2}\.\d{2}\.\d{4}', birthday)):
-        if datetime.strptime(birthday, '%d.%m.%Y'):
+        try:
+            datetime.strptime(birthday, '%d.%m.%Y')
             return True
-        else:
-            raise InvalidDateValueError
+        except ValueError:
+            raise InvalidDateValueException
     else:
-        raise InvalidDateFormatError
+        raise InvalidDateFormatException

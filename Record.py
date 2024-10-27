@@ -12,9 +12,19 @@ class Record:
     def add_phone(self, phone):
         self.phones.append(phone)
 
+    def find_phone(self, phone_number):
+        try:
+            index = self.phones.index(phone_number)
+
+            return self.phones[index]
+        except ValueError:
+            return False
 
     def add_email(self, email):
         self.email = email
+
+    def has_email(self):
+        return True if self.email is not None else False
 
 
     def __str__(self):

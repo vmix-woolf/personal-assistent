@@ -1,10 +1,22 @@
-from Handler import
-from PersonalAssistant import PersonalAssistant
 import pickle
+import constants
+from PersonalAssistant import PersonalAssistant
+from Handler import (
+    show_contacts,
+    add_contact,
+    add_email,
+    change_contact,
+    change_email,
+    add_address,
+    change_address,
+    add_birthday,
+    change_birthday
+)
+
 
 def main():
     assistant = load_data()
-    print(f"Welcome to personal assistant")
+    print(constants.WELCOME_MESSAGE)
 
     while True:
         user_input = input("Enter a command: ")
@@ -17,11 +29,11 @@ def main():
         elif command == "hello":
             print("How can I help you?")
         elif command == "add":
-            add_contact(args, assistant)
+            print(add_contact(args, assistant))
         elif command == "change":
             change_contact(args, assistant)
         elif command == "add-email":
-            add_email(args, assistant)
+            print(add_email(args, assistant))
         elif command == "change-email":
             change_email(args, assistant)
         elif command == "add-address":
@@ -35,17 +47,19 @@ def main():
         elif command == "all":
             show_contacts(assistant)
         else:
-            print("Invalid command.")
+            print(constants.INVALID_COMMAND_ERROR)
 
 
 def parse_input(user_input):
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
+
     return cmd, *args
 
 
 def save_data(book, filename="personal_assistant.pkl"):
     with open(filename, "wb") as fh:
+        # noinspection PyTypeChecker
         pickle.dump(book, fh)
 
 

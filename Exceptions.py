@@ -1,11 +1,23 @@
-class InvalidDateFormatError(Exception):
+class InvalidDateFormatException(Exception):
     pass
 
-class InvalidDateValueError(ValueError):
+class InvalidDateValueException(ValueError):
     pass
 
-class ExactDigitException(Exception):
+class PhoneNumberException(Exception):
     pass
 
-class NoSuchContact(Exception):
+class NoSuchContactException(Exception):
+    pass
+
+class InvalidNameException(Exception):
+    pass
+
+class ContactAlreadyPresentException(Exception):
+    pass
+
+class EmailNotValidException(Exception):
+    pass
+
+class EmailAlreadyPresentException(Exception):
     pass
