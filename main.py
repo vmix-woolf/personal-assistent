@@ -1,4 +1,14 @@
-from Handler import add_record, show_contacts
+from Handler import (
+    add_contact,
+    change_contact,
+    add_email,
+    change_email,
+    add_address,
+    change_address,
+    add_birthday,
+    change_birthday,
+    show_contacts
+)
 from PersonalAssistant import PersonalAssistant
 from collections import UserDict
 
@@ -16,12 +26,21 @@ def main():
         elif command == "hello":
             print("How can I help you?")
         elif command == "add":
-            try:
-                add_record(args, assistant)
-            except ValueError as e:
-                print(e)
-        # elif command == "change":
-            # print(assistant.change_contact(args, contact))
+            add_contact(args, assistant)
+        elif command == "change":
+            change_contact(args, assistant)
+        elif command == "add-email":
+            add_email(args, assistant)
+        elif command == "change-email":
+            change_email(args, assistant)
+        elif command == "add-address":
+            add_address(args, assistant)
+        elif command == "change-address":
+            change_address(args, assistant)
+        elif command == "add-birthday":
+            add_birthday(args, assistant)
+        elif command == "change-birthday":
+            change_birthday(args, assistant)
         elif command == "all":
             show_contacts(assistant)
         else:
