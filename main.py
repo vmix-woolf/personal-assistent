@@ -1,19 +1,9 @@
-from Handler import (
-    add_contact,
-    change_contact,
-    add_email,
-    change_email,
-    add_address,
-    change_address,
-    add_birthday,
-    change_birthday,
-    show_contacts
-)
+from Handler import
 from PersonalAssistant import PersonalAssistant
-from collections import UserDict
+import pickle
 
 def main():
-    assistant = PersonalAssistant()
+    assistant = load_data()
     print(f"Welcome to personal assistant")
 
     while True:
@@ -21,6 +11,7 @@ def main():
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit", "quit"]:
+            save_data(assistant)
             print("Good bye!")
             break
         elif command == "hello":
@@ -51,6 +42,19 @@ def parse_input(user_input):
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
     return cmd, *args
+
+
+def save_data(book, filename="personal_assistant.pkl"):
+    with open(filename, "wb") as fh:
+        pickle.dump(book, fh)
+
+
+def load_data(filename="personal_assistant.pkl"):
+    try:
+        with open(filename, "rb") as fh:
+            return pickle.load(fh)
+    except FileNotFoundError:
+        return PersonalAssistant()
 
 
 if __name__ == "__main__":
