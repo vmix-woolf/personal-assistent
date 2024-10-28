@@ -16,6 +16,9 @@ class InvalidNameException(Exception):
 class ContactAlreadyPresentException(Exception):
     pass
 
+class PhoneIsAlreadyBelongingException(Exception):
+    pass
+
 class EmailNotValidException(Exception):
     pass
 

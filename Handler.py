@@ -7,7 +7,7 @@ from Verification import (
 )
 from Exceptions import (
     PhoneNumberException,
-    ContactAlreadyPresentException,
+    PhoneIsAlreadyBelongingException,
     NoSuchContactException,
     EmailNotValidException,
     InvalidNameException,
@@ -15,6 +15,7 @@ from Exceptions import (
 )
 from decorations import input_error
 import constants
+
 
 @input_error
 def show_contacts(assistant: PersonalAssistant):
@@ -24,55 +25,36 @@ def show_contacts(assistant: PersonalAssistant):
         for _, contact in assistant.items():
             print(contact)
 
+
 @input_error
 def add_contact(args, assistant):
     name, phone_number, *_ = args
-    record = assistant.find_record(name)
-    # try:
-    #     if record is None:  # there's no such record yet.
-    #         if not name_validation(name):
-    #             raise InvalidNameException
-    #
-    #         if not phone_number_validation(phone_number):
-    #             raise PhoneNumberException
-    #
-    #         record = Record(name)
-    #         assistant.add_record(record)
-    #         record.add_phone(phone_number)
-    #
-    #         return constants.CONTACT_ADDED
-    #     else:  # such a record already exists
-    #         if not phone_number_validation(phone_number):
-    #             raise PhoneNumberException
-    #
-    #         if record.find_phone(phone_number):
-    #             return constants.PHONE_IS_IN_BOOK
-    #         else:
-    #             record.add_phone(phone_number)
-    #             return constants.CONTACT_UPDATED
-    # except InvalidNameException:
-    #     return constants.NAME_IS_NOT_VALID
-    # except PhoneNumberException:
-    #     return constants.PRECISE_DIGITS_ERROR
-    # except ContactAlreadyPresentException:
-    #     return constants.CONTACT_IS_ALREADY_PRESENT
+    try:
+        if not name_validation(name):
+            raise InvalidNameException
 
-    if record is None:  # if such name is new
-        if phone_number_validation(phone_number):
+        if not phone_number_validation(phone_number):
+            raise PhoneNumberException
+
+        record = assistant.find_record(name)
+
+        if record is None:  # if such name is new
             record = Record(name)
             assistant.add_record(record)
             record.add_phone(phone_number)
 
             return constants.CONTACT_ADDED
-        else:
-            raise PhoneNumberException()
-    else:  # continue if such name is already kept
-        if record.find_phone(phone_number):
-            return constants.PHONE_IS_IN_BOOK
+        elif record.find_phone(phone_number):  # continue if such name is already kept
+            raise PhoneIsAlreadyBelongingException
         else:
             record.add_phone(phone_number)
-
             return constants.CONTACT_UPDATED
+    except InvalidNameException:
+        return constants.NAME_IS_NOT_VALID
+    except PhoneNumberException:
+        return constants.PRECISE_DIGITS_ERROR
+    except PhoneIsAlreadyBelongingException:
+        return constants.PHONE_BELONGS_TO_THIS_CONTACT
 
 
 @input_error
