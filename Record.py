@@ -36,6 +36,10 @@ class Record:
         return True if self.email is not None else False
 
 
+    def edit_email(self, new_email):
+        self.email = new_email
+
+
     def __str__(self):
         basic_message = f"Contact name: {self.name.value}, phones: {'; '.join(p for p in self.phones)}"
 

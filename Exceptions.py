@@ -1,3 +1,6 @@
+class NotEnoughArguments(Exception):
+    pass
+
 class InvalidDateFormatException(Exception):
     pass
 

@@ -4,9 +4,11 @@ WELCOME_MESSAGE = "Welcome to the assistant bot!"
 # related to adding process
 CONTACT_ADDED = "Contact added."
 CONTACT_UPDATED = "Contact updated."
-EMAIL_IS_ADDED = "Email is added."
+EMAIL_ADDED = "Email is added."
+EMAIL_UPDATED = "Email is updated."
 
 INVALID_COMMAND_ERROR = "Invalid command."
+NOT_ENOUGH_ARGUMENTS = "Not enough arguments. Please input the correct command."
 # related to system errors
 KEY_ERROR = "This name is already in the contacts."
 VALUE_ERROR = "Enter the correct argument value."
@@ -22,10 +24,10 @@ PHONE_BELONGS_TO_CONTACT = "This phone number already belongs to this contact."
 NO_SUCH_PHONE_NUMBER = "Old phone number doesn't belong to this contact."
 # related to emails
 EMAIL_IS_NOT_VALID = "Email is not valid."
-EMAIL_IS_ALREADY_PRESENT = "Email is already present for this contact. Use 'change-email...' command"
+EMAIL_IS_ALREADY_PRESENT = "Email is already present for this contact. Use 'change-email...' command."
 # related to the birthday
 INVALID_FORMAT_ERROR = "Invalid date format. Use DD.MM.YYYY"
 INVALID_VALUE_ERROR = "Invalid date value. Use correct date."
 CONTACT_HAS_BIRTHDAY = "This contact has already their birthday"
 NO_NECESSARY_TO_CONGRATULATE = "There are no letters scheduled to be mailed in the next week."
-TITLE_TO_CONGRATULATE = "It's necessary to congratulate the following contacts"
+TITLE_TO_CONGRATULATE = "It's necessary to congratulate the following contacts:"

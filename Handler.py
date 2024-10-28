@@ -3,9 +3,11 @@ from PersonalAssistant import PersonalAssistant
 from verification import (
     name_validation,
     phone_number_validation,
-    email_validation, Verification
+    email_validation,
+    birthday_validation
 )
 from Exceptions import (
+    NotEnoughArguments,
     PhoneNumberException,
     PhoneIsAlreadyBelongingException,
     NoSuchContactException,
@@ -60,6 +62,7 @@ def add_contact(args, assistant):
 
 def change_contact(args, assistant: PersonalAssistant):
     name, old_phone_number, new_phone_number, *_ = args
+
     try:
         record = assistant.find_record(name)
 
@@ -99,7 +102,7 @@ def add_email(args, assistant: PersonalAssistant):
         if email_validation(email):
             record.add_email(email)
 
-            return constants.EMAIL_IS_ADDED
+            return constants.EMAIL_ADDED
         else:
             raise EmailNotValidException
     except EmailNotValidException:
@@ -111,7 +114,29 @@ def add_email(args, assistant: PersonalAssistant):
 
 
 def change_email(args, assistant: PersonalAssistant):
-    pass
+    try:
+        name, new_email, *_ = args
+
+        if len(args) < 2:
+            raise ValueError
+
+        record = assistant.find_record(name)
+
+        if record is None:
+            raise NoSuchContactException
+
+        if not email_validation(new_email):
+            raise EmailNotValidException
+
+        record.edit_email(new_email)
+
+        return constants.EMAIL_UPDATED
+    except ValueError:
+        return constants.NOT_ENOUGH_ARGUMENTS
+    except NoSuchContactException:
+        return constants.NO_SUCH_CONTACT
+    except EmailNotValidException:
+        return constants.EMAIL_IS_NOT_VALID
 
 
 def add_address(args, assistant: PersonalAssistant):
@@ -128,4 +153,3 @@ def add_birthday(args, assistant: PersonalAssistant):
 
 def change_birthday(args, assistant: PersonalAssistant):
     pass
-
