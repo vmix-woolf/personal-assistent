@@ -48,6 +48,22 @@ class Record:
         return True if self.birthday is not None else False
 
 
+    def edit_birthday(self, new_birthday):
+        self.birthday = new_birthday
+
+
+    def add_address(self, address):
+        self.address = address
+
+
+    def edit_address(self, new_address):
+        pass
+
+
+    def has_address(self):
+        return True if len(self.address) != 0 else False
+
+
     def __str__(self):
         basic_message = f"Contact name: {self.name.value}, phones: {'; '.join(p for p in self.phones)}"
 
@@ -56,5 +72,8 @@ class Record:
 
         if self.birthday is not None:
             basic_message += f", birthday: {self.birthday}"
+
+        if len(self.address) != 0:
+            basic_message += f", address: (city: {self.address['city']}; street: {self.address['street']}; house: {self.address['building']}; apartment: {self.address['apartment']})"
 
         return basic_message

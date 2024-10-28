@@ -30,3 +30,9 @@ class PhoneIsAlreadyBelongingException(Exception):
 
 class ContactHasBirthdayException(Exception):
     pass
+
+class NoBirthdayException(Exception):
+    pass
+
+class AddressIsAlreadyPresent(Exception):
+    pass

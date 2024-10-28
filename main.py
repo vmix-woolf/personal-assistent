@@ -37,9 +37,9 @@ def main():
         elif command == "change-email":
             print(change_email(args, assistant))
         elif command == "add-address":
-            add_address(args, assistant)
+            print(add_address(args, assistant))
         elif command == "change-address":
-            change_address(args, assistant)
+            print(change_address(args, assistant))
         elif command == "add-birthday":
             print(add_birthday(args, assistant))
         elif command == "change-birthday":

@@ -1,5 +1,5 @@
 import re, calendar
-from datetime import datetime
+from datetime import datetime, date
 from itertools import filterfalse
 
 from Exceptions import (

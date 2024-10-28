@@ -17,7 +17,9 @@ from Exceptions import (
     NoSuchPhoneNumberException,
     InvalidDateFormatException,
     InvalidDateValueException,
-    ContactHasBirthdayException
+    ContactHasBirthdayException,
+    NoBirthdayException,
+    AddressIsAlreadyPresent
 )
 from decorations import input_error
 import constants
@@ -123,8 +125,35 @@ def change_email(args, assistant: PersonalAssistant):
         return constants.NOT_ENOUGH_ARGUMENTS
 
 
+@input_error
 def add_address(args, assistant: PersonalAssistant):
-    pass
+    name, *_ = args
+
+    if len(args) < 1:
+        raise ValueError
+
+    record = assistant.find_record(name)
+
+    if record is None:
+        raise NoSuchContactException
+
+    if record.has_address():
+        raise AddressIsAlreadyPresent
+    else:
+        city = input('Type the name of the city: ')
+        street = input('Type the name of the street: ')
+        building = input('Type a number of the building: ')
+        apartment = int(input('Type a number of the apartment: '))
+        address = {
+            'city': city,
+            'street': street,
+            'building': building,
+            'apartment': apartment
+        }
+
+        record.add_address(address)
+
+        return constants.ADDRESS_ADDED
 
 
 def change_address(args, assistant: PersonalAssistant):
@@ -161,4 +190,28 @@ def add_birthday(args, assistant: PersonalAssistant):
 
 
 def change_birthday(args, assistant: PersonalAssistant):
-    pass
+    name, new_birthday, *_ = args
+
+    if len(args) < 2:
+        raise ValueError
+
+    if not name_validation(name):
+        raise InvalidNameException
+
+    record = assistant.find_record(name)
+
+    if record is None:
+        raise NoSuchContactException
+
+    if not record.has_birthday():
+        raise NoBirthdayException
+
+    if not birthday_format_validation(new_birthday):
+        raise InvalidDateFormatException
+
+    if not birthday_value_validation(new_birthday):
+        raise InvalidDateValueException('Incorrect date')
+    else:
+        record.edit_birthday(new_birthday)
+
+        return constants.BIRTHDAY_UPDATED

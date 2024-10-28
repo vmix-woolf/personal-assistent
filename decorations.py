@@ -10,6 +10,7 @@ from Exceptions import (
     EmailNotValidException,
     EmailAlreadyPresentException,
     ContactHasBirthdayException,
+    AddressIsAlreadyPresent
 )
 
 
@@ -43,5 +44,7 @@ def input_error(func):
             return constants.EMAIL_IS_ALREADY_PRESENT
         except ContactHasBirthdayException:
             return constants.CONTACT_HAS_BIRTHDAY
+        except AddressIsAlreadyPresent:
+            return constants.ADDRESS_IS_ALREADY_PRESENT
 
     return inner
