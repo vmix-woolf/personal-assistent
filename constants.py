@@ -18,8 +18,8 @@ CONTACT_LIST_EMPTY = "Contact list is empty."
 NO_SUCH_CONTACT = "No such contact in the personal assistant."
 # related to phones
 PRECISE_DIGITS_ERROR = f"Phone should consist of exactly {NUMBER_OF_DIGITS_IN_PHONE_NUMBER} digits!"
-NO_PHONE_NUMBER = "No such phone number for this contact."
-PHONE_BELONGS_TO_THIS_CONTACT = "This phone number already belongs to this contact."
+PHONE_BELONGS_TO_CONTACT = "This phone number already belongs to this contact."
+NO_SUCH_PHONE_NUMBER = "Old phone number doesn't belong to this contact."
 # related to emails
 EMAIL_IS_NOT_VALID = "Email is not valid."
 EMAIL_IS_ALREADY_PRESENT = "Email is already present for this contact. Use 'change-email...' command"

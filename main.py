@@ -31,7 +31,7 @@ def main():
         elif command == "add":
             print(add_contact(args, assistant))
         elif command == "change":
-            change_contact(args, assistant)
+            print(change_contact(args, assistant))
         elif command == "add-email":
             print(add_email(args, assistant))
         elif command == "change-email":

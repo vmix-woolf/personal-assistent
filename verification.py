@@ -7,16 +7,11 @@ from Exceptions import (
 from constants import NUMBER_OF_DIGITS_IN_PHONE_NUMBER
 
 
-class Verification:
-    def __init__(self, name):
-        self.name = name
-
 def name_validation(name):
     return True if bool(re.match(r'[A-Za-z]{2,25}', name)) else False
 
 
 def phone_number_validation(phone_number):
-    # TODO: consider not throwing an exception and return False with ternary operator - done
     return True if phone_number.isdigit() and len(phone_number) == NUMBER_OF_DIGITS_IN_PHONE_NUMBER else False
 
 

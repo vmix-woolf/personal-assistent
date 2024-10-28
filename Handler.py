@@ -1,6 +1,6 @@
 from Record import Record
 from PersonalAssistant import PersonalAssistant
-from Verification import (
+from verification import (
     name_validation,
     phone_number_validation,
     email_validation, Verification
@@ -11,7 +11,8 @@ from Exceptions import (
     NoSuchContactException,
     EmailNotValidException,
     InvalidNameException,
-    EmailAlreadyPresentException
+    EmailAlreadyPresentException,
+    NoSuchPhoneNumberException
 )
 from decorations import input_error
 import constants
@@ -54,7 +55,32 @@ def add_contact(args, assistant):
     except PhoneNumberException:
         return constants.PRECISE_DIGITS_ERROR
     except PhoneIsAlreadyBelongingException:
-        return constants.PHONE_BELONGS_TO_THIS_CONTACT
+        return constants.PHONE_BELONGS_TO_CONTACT
+
+
+def change_contact(args, assistant: PersonalAssistant):
+    name, old_phone_number, new_phone_number, *_ = args
+    try:
+        record = assistant.find_record(name)
+
+        if record is None:
+            raise NoSuchContactException
+
+        if not phone_number_validation(new_phone_number):
+            raise PhoneNumberException
+
+        if record.find_phone(old_phone_number):
+            record.edit_phone(old_phone_number, new_phone_number)
+        else:
+            raise NoSuchPhoneNumberException
+
+        return constants.CONTACT_UPDATED
+    except NoSuchContactException:
+        return constants.NO_SUCH_CONTACT
+    except PhoneNumberException:
+        return constants.PRECISE_DIGITS_ERROR
+    except NoSuchPhoneNumberException:
+        return constants.NO_SUCH_PHONE_NUMBER
 
 
 @input_error
@@ -63,6 +89,7 @@ def add_email(args, assistant: PersonalAssistant):
 
     try:
         record = assistant.find_record(name)
+
         if record is None:
             raise NoSuchContactException
 
@@ -71,6 +98,7 @@ def add_email(args, assistant: PersonalAssistant):
 
         if email_validation(email):
             record.add_email(email)
+
             return constants.EMAIL_IS_ADDED
         else:
             raise EmailNotValidException
@@ -81,20 +109,22 @@ def add_email(args, assistant: PersonalAssistant):
     except NoSuchContactException:
         return constants.NO_SUCH_CONTACT
 
-def change_contact(args, assistant: PersonalAssistant):
-    pass
 
 def change_email(args, assistant: PersonalAssistant):
     pass
 
+
 def add_address(args, assistant: PersonalAssistant):
     pass
+
 
 def change_address(args, assistant: PersonalAssistant):
     pass
 
+
 def add_birthday(args, assistant: PersonalAssistant):
     pass
+
 
 def change_birthday(args, assistant: PersonalAssistant):
     pass

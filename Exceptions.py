@@ -7,20 +7,20 @@ class InvalidDateValueException(ValueError):
 class PhoneNumberException(Exception):
     pass
 
-class NoSuchContactException(Exception):
+class NoSuchPhoneNumberException(Exception):
     pass
 
 class InvalidNameException(Exception):
     pass
 
-class ContactAlreadyPresentException(Exception):
-    pass
-
-class PhoneIsAlreadyBelongingException(Exception):
-    pass
-
 class EmailNotValidException(Exception):
     pass
 
+class NoSuchContactException(Exception):
+    pass
+
 class EmailAlreadyPresentException(Exception):
+    pass
+
+class PhoneIsAlreadyBelongingException(Exception):
     pass
