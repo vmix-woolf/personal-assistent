@@ -2,8 +2,9 @@ NUMBER_OF_DIGITS_IN_PHONE_NUMBER = 3
 
 WELCOME_MESSAGE = "Welcome to the Personal Assistant bot!"
 # related to adding process
-CONTACT_ADDED = "Contact added."
-CONTACT_UPDATED = "Contact updated."
+CONTACT_ADDED = "Contact is added."
+CONTACT_UPDATED = "Contact is updated."
+CONTACT_DELETED = "Contact is deleted."
 EMAIL_ADDED = "Email is added."
 EMAIL_UPDATED = "Email is updated."
 BIRTHDAY_ADDED = "Birthday is added."

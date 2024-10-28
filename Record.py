@@ -10,8 +10,8 @@ class Record:
         self.birthday = None
 
 
-    def add_phone(self, phone):
-        self.phones.append(phone)
+    def add_phone(self, phone_number):
+        self.phones.append(phone_number)
 
 
     def edit_phone(self, old_phone, new_phone):
@@ -62,6 +62,22 @@ class Record:
 
     def has_address(self):
         return True if len(self.address) != 0 else False
+
+
+    def delete_city(self, name):
+        pass
+
+
+    def delete_street(self, name):
+            pass
+
+
+    def delete_building(self, name):
+            pass
+
+
+    def delete_apartment(self, name):
+            pass
 
 
     def __str__(self):

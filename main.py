@@ -4,13 +4,18 @@ from PersonalAssistant import PersonalAssistant
 from Handler import (
     show_contacts,
     add_contact,
-    add_email,
     change_contact,
+    remove_contact,
+    add_email,
     change_email,
     add_address,
     change_address,
+    remove_city,
+    remove_street,
+    remove_building,
+    remove_apartment,
     add_birthday,
-    change_birthday
+    change_birthday,
 )
 
 
@@ -32,6 +37,8 @@ def main():
             print(add_contact(args, assistant))
         elif command == "change":
             print(change_contact(args, assistant))
+        elif command == "remove":
+            print(remove_contact(args, assistant))
         elif command == "add-email":
             print(add_email(args, assistant))
         elif command == "change-email":
@@ -40,6 +47,14 @@ def main():
             print(add_address(args, assistant))
         elif command == "change-address":
             print(change_address(args, assistant))
+        elif command == "remove-city":
+            print(remove_city(args, assistant))
+        elif command == "remove-street":
+            print(remove_street(args, assistant))
+        elif command == "remove-building":
+            print(remove_building(args, assistant))
+        elif command == "remove-apartment":
+            print(remove_apartment(args, assistant))
         elif command == "add-birthday":
             print(add_birthday(args, assistant))
         elif command == "change-birthday":

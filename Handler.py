@@ -1,5 +1,6 @@
 from Record import Record
 from PersonalAssistant import PersonalAssistant
+from constants import NO_SUCH_CONTACT, NOT_ENOUGH_ARGUMENTS
 from verification import (
     name_validation,
     phone_number_validation,
@@ -83,6 +84,21 @@ def change_contact(args, assistant: PersonalAssistant):
 
 
 @input_error
+def remove_contact(args, assistant):
+    name, *_ = args
+
+    if len(args) < 1:
+        raise NOT_ENOUGH_ARGUMENTS
+
+    if assistant.find_record(name) is None:
+        raise NoSuchContactException
+    else:
+        assistant.remove_record(name)
+
+        return constants.CONTACT_DELETED
+
+
+@input_error
 def add_email(args, assistant: PersonalAssistant):
     name, email, *_ = args
 
@@ -157,6 +173,22 @@ def add_address(args, assistant: PersonalAssistant):
 
 
 def change_address(args, assistant: PersonalAssistant):
+    pass
+
+
+def remove_city(args, assistant: PersonalAssistant):
+    pass
+
+
+def remove_street(args, assistant: PersonalAssistant):
+    pass
+
+
+def remove_building(args, assistant: PersonalAssistant):
+    pass
+
+
+def remove_apartment(args, assistant: PersonalAssistant):
     pass
 
 
