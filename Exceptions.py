@@ -4,7 +4,7 @@ class NotEnoughArguments(Exception):
 class InvalidDateFormatException(Exception):
     pass
 
-class InvalidDateValueException(ValueError):
+class InvalidDateValueException(Exception):
     pass
 
 class PhoneNumberException(Exception):
@@ -26,4 +26,7 @@ class EmailAlreadyPresentException(Exception):
     pass
 
 class PhoneIsAlreadyBelongingException(Exception):
+    pass
+
+class ContactHasBirthdayException(Exception):
     pass

@@ -41,9 +41,9 @@ def main():
         elif command == "change-address":
             change_address(args, assistant)
         elif command == "add-birthday":
-            add_birthday(args, assistant)
+            print(add_birthday(args, assistant))
         elif command == "change-birthday":
-            change_birthday(args, assistant)
+            print(change_birthday(args, assistant))
         elif command == "all":
             show_contacts(assistant)
         else:

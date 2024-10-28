@@ -40,6 +40,14 @@ class Record:
         self.email = new_email
 
 
+    def add_birthday(self, birthday):
+        self.birthday = birthday
+
+
+    def has_birthday(self):
+        return True if self.birthday is not None else False
+
+
     def __str__(self):
         basic_message = f"Contact name: {self.name.value}, phones: {'; '.join(p for p in self.phones)}"
 
