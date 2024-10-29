@@ -10,6 +10,7 @@ EMAIL_UPDATED = "Email is updated."
 BIRTHDAY_ADDED = "Birthday is added."
 BIRTHDAY_UPDATED = "Birthday is updated."
 ADDRESS_ADDED = "Address is added."
+NOTE_ADDED = "Note is added."
 
 INVALID_COMMAND_ERROR = "Invalid command."
 NOT_ENOUGH_ARGUMENTS = "Not enough arguments. Please input the correct command."
@@ -37,3 +38,6 @@ NO_NECESSARY_TO_CONGRATULATE = "There are no letters scheduled to be mailed in t
 TITLE_TO_CONGRATULATE = "It's necessary to congratulate the following contacts:"
 # related to address
 ADDRESS_IS_ALREADY_PRESENT = "This contact has an address already. To change it please use 'change-...' command."
+# related to notes
+EMPTY_NOTE = "You cannot create an empty note."
+GREATER_THAN_MAX_LENGTH = "Note cannot be greater than the maximum length."

@@ -36,3 +36,9 @@ class NoBirthdayException(Exception):
 
 class AddressIsAlreadyPresent(Exception):
     pass
+
+class EmptyNoteException(Exception):
+    pass
+
+class NoteExceedsMaxLength(Exception):
+    pass

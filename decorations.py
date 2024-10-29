@@ -10,7 +10,9 @@ from Exceptions import (
     EmailNotValidException,
     EmailAlreadyPresentException,
     ContactHasBirthdayException,
-    AddressIsAlreadyPresent
+    AddressIsAlreadyPresent,
+    EmptyNoteException,
+    NoteExceedsMaxLength
 )
 
 
@@ -46,5 +48,9 @@ def input_error(func):
             return constants.CONTACT_HAS_BIRTHDAY
         except AddressIsAlreadyPresent:
             return constants.ADDRESS_IS_ALREADY_PRESENT
+        except EmptyNoteException:
+            return constants.EMPTY_NOTE
+        except NoteExceedsMaxLength:
+            return constants.GREATER_THAN_MAX_LENGTH
 
     return inner

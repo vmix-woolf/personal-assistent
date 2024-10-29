@@ -1,6 +1,8 @@
 from Record import Record
+from Notes import Notes
+from Note import Note
 from PersonalAssistant import PersonalAssistant
-from constants import NO_SUCH_CONTACT, NOT_ENOUGH_ARGUMENTS
+from constants import NOT_ENOUGH_ARGUMENTS
 from verification import (
     name_validation,
     phone_number_validation,
@@ -20,7 +22,9 @@ from Exceptions import (
     InvalidDateValueException,
     ContactHasBirthdayException,
     NoBirthdayException,
-    AddressIsAlreadyPresent
+    AddressIsAlreadyPresent,
+    EmptyNoteException,
+    NoteExceedsMaxLength
 )
 from decorations import input_error
 import constants
@@ -262,3 +266,33 @@ def change_birthday(args, assistant: PersonalAssistant):
         record.edit_birthday(new_birthday)
 
         return constants.BIRTHDAY_UPDATED
+
+
+@input_error
+def add_note(notes: Notes):
+
+    while True:
+        user_note = input('Type the note: ')
+        if user_note in ["close", "exit", "quit"]:
+            print("You interrupted the input of a note")
+            break
+        elif user_note == '':
+            raise EmptyNoteException
+
+        elif len(user_note) > 255:
+            raise NoteExceedsMaxLength
+
+        note = Note(user_note)
+        notes.add_note(note)
+
+        for key, value in notes.data.items():
+            print(f"{key}: {value}")
+        break
+
+    return constants.NOTE_ADDED
+
+
+
+
+
+

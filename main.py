@@ -1,6 +1,7 @@
 import pickle
 import constants
 from PersonalAssistant import PersonalAssistant
+from Notes import Notes
 from Handler import (
     show_contacts,
     add_contact,
@@ -16,12 +17,14 @@ from Handler import (
     remove_apartment,
     add_birthday,
     change_birthday,
-    showcase_contact
+    showcase_contact,
+    add_note
 )
 
 
 def main():
     assistant = load_data()
+    notes = Notes()
     print(constants.WELCOME_MESSAGE)
 
     while True:
@@ -62,6 +65,8 @@ def main():
             print(add_birthday(args, assistant))
         elif command == "change-birthday":
             print(change_birthday(args, assistant))
+        elif command == "add-note":
+            print(add_note(notes))
         elif command == "all":
             show_contacts(assistant)
         else:
