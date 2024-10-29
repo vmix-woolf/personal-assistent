@@ -1,3 +1,6 @@
+from decorations import input_error
+
+import constants
 from Record import Record
 from Notes import Notes
 from Note import Note
@@ -26,8 +29,6 @@ from Exceptions import (
     EmptyNoteException,
     NoteExceedsMaxLength
 )
-from decorations import input_error
-import constants
 
 
 @input_error

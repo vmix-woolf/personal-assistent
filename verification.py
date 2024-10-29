@@ -1,11 +1,6 @@
-import re, calendar
-from datetime import datetime, date
-from itertools import filterfalse
+import re
+import calendar
 
-from Exceptions import (
-    InvalidDateValueException,
-    InvalidDateFormatException,
-)
 from constants import NUMBER_OF_DIGITS_IN_PHONE_NUMBER
 from decorations import input_error
 
@@ -36,6 +31,7 @@ def birthday_value_validation(birthday):
 
     if 9999 < year < 1:
         return False
+
     if 12 < month < 1:
         return False
 
