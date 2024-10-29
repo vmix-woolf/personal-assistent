@@ -16,6 +16,7 @@ from Handler import (
     remove_apartment,
     add_birthday,
     change_birthday,
+    showcase_contact
 )
 
 
@@ -39,6 +40,8 @@ def main():
             print(change_contact(args, assistant))
         elif command == "remove":
             print(remove_contact(args, assistant))
+        elif command == "showcase":
+            print(showcase_contact(args, assistant))
         elif command == "add-email":
             print(add_email(args, assistant))
         elif command == "change-email":

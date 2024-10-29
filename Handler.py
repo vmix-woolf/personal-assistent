@@ -99,6 +99,21 @@ def remove_contact(args, assistant):
 
 
 @input_error
+def showcase_contact(args, assistant: PersonalAssistant):
+    name, *_ = args
+
+    if len(args) < 1:
+        raise NOT_ENOUGH_ARGUMENTS
+
+    record = assistant.find_record(name)
+
+    if record is None:
+        raise NoSuchContactException
+
+    return record
+
+
+@input_error
 def add_email(args, assistant: PersonalAssistant):
     name, email, *_ = args
 
