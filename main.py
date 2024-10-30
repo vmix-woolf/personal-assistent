@@ -2,6 +2,7 @@ import pickle
 import constants
 from PersonalAssistant import PersonalAssistant
 from Notes import Notes
+from constants import Constants
 from Handler import (
     show_contacts,
     add_contact,
@@ -18,14 +19,15 @@ from Handler import (
     add_birthday,
     change_birthday,
     showcase_contact,
-    add_note
+    add_note,
+    show_notes
 )
 
 
 def main():
     assistant = load_data()
-    notes = Notes()
-    print(constants.WELCOME_MESSAGE)
+    notes = load_data_notes()
+    print(Constants.WELCOME_MESSAGE.value)
 
     while True:
         user_input = input("Enter a command: ")
@@ -33,6 +35,7 @@ def main():
 
         if command in ["close", "exit", "quit"]:
             save_data(assistant)
+            save_data_notes(notes)
             print("Good bye!")
             break
         elif command == "hello":
@@ -67,10 +70,12 @@ def main():
             print(change_birthday(args, assistant))
         elif command == "add-note":
             print(add_note(notes))
+        elif command == "all-notes":
+            show_notes(notes)
         elif command == "all":
             show_contacts(assistant)
         else:
-            print(constants.INVALID_COMMAND_ERROR)
+            print(Constants.INVALID_COMMAND_ERROR.value)
 
 
 def parse_input(user_input):
@@ -86,12 +91,26 @@ def save_data(book, filename="personal_assistant.pkl"):
         pickle.dump(book, fh)
 
 
+def save_data_notes(book, filename="notes.pkl"):
+    with open(filename, "wb") as fh:
+        # noinspection PyTypeChecker
+        pickle.dump(book, fh)
+
+
 def load_data(filename="personal_assistant.pkl"):
     try:
         with open(filename, "rb") as fh:
             return pickle.load(fh)
     except FileNotFoundError:
         return PersonalAssistant()
+
+
+def load_data_notes(filename="notes.pkl"):
+    try:
+        with open(filename, "rb") as fh:
+            return pickle.load(fh)
+    except FileNotFoundError:
+        return Notes()
 
 
 if __name__ == "__main__":

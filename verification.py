@@ -1,7 +1,7 @@
 import re
 import calendar
 
-from constants import NUMBER_OF_DIGITS_IN_PHONE_NUMBER
+from constants import Constants
 from decorations import input_error
 
 
@@ -10,7 +10,7 @@ def name_validation(name):
 
 
 def phone_number_validation(phone_number):
-    return True if phone_number.isdigit() and len(phone_number) == NUMBER_OF_DIGITS_IN_PHONE_NUMBER else False
+    return True if phone_number.isdigit() and len(phone_number) == Constants.NUMBER_OF_DIGITS_IN_PHONE_NUMBER.value else False
 
 
 def email_validation(email):

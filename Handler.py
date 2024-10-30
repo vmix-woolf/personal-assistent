@@ -1,11 +1,14 @@
-from decorations import input_error
+from django.utils.termcolors import RESET
 
-import constants
+from decorations import input_error
+from colorama import Fore
+
+from constants import Constants
 from Record import Record
 from Notes import Notes
 from Note import Note
 from PersonalAssistant import PersonalAssistant
-from constants import NOT_ENOUGH_ARGUMENTS
+# from Constants import NOT_ENOUGH_ARGUMENTS
 from verification import (
     name_validation,
     phone_number_validation,
@@ -27,7 +30,7 @@ from Exceptions import (
     NoBirthdayException,
     AddressIsAlreadyPresent,
     EmptyNoteException,
-    NoteExceedsMaxLength
+    NoteExceedsMaxLength, NotEnoughArguments
 )
 
 
@@ -60,12 +63,12 @@ def add_contact(args, assistant):
         assistant.add_record(record)
         record.add_phone(phone_number)
 
-        return constants.CONTACT_ADDED
+        return Constants.CONTACT_ADDED.value
     elif record.find_phone(phone_number):  # continue if such name is already kept
         raise PhoneIsAlreadyBelongingException
     else:
         record.add_phone(phone_number)
-        return constants.CONTACT_UPDATED
+        return Constants.CONTACT_UPDATED.value
 
 
 @input_error
@@ -85,7 +88,7 @@ def change_contact(args, assistant: PersonalAssistant):
     else:
         raise NoSuchPhoneNumberException
 
-    return constants.CONTACT_UPDATED
+    return Constants.CONTACT_UPDATED.value
 
 
 @input_error
@@ -93,14 +96,14 @@ def remove_contact(args, assistant):
     name, *_ = args
 
     if len(args) < 1:
-        raise NOT_ENOUGH_ARGUMENTS
+        raise NotEnoughArguments
 
     if assistant.find_record(name) is None:
         raise NoSuchContactException
     else:
         assistant.remove_record(name)
 
-        return constants.CONTACT_DELETED
+        return Constants.CONTACT_DELETED.value
 
 
 @input_error
@@ -108,7 +111,7 @@ def showcase_contact(args, assistant: PersonalAssistant):
     name, *_ = args
 
     if len(args) < 1:
-        raise NOT_ENOUGH_ARGUMENTS
+        raise NotEnoughArguments
 
     record = assistant.find_record(name)
 
@@ -133,7 +136,7 @@ def add_email(args, assistant: PersonalAssistant):
     if email_validation(email):
         record.add_email(email)
 
-        return constants.EMAIL_ADDED
+        return Constants.EMAIL_ADDED.value
     else:
         raise EmailNotValidException
 
@@ -156,9 +159,9 @@ def change_email(args, assistant: PersonalAssistant):
 
         record.edit_email(new_email)
 
-        return constants.EMAIL_UPDATED
+        return Constants.EMAIL_UPDATED.value
     except ValueError:
-        return constants.NOT_ENOUGH_ARGUMENTS
+        return Constants.NOT_ENOUGH_ARGUMENTS.value
 
 
 @input_error
@@ -189,7 +192,7 @@ def add_address(args, assistant: PersonalAssistant):
 
         record.add_address(address)
 
-        return constants.ADDRESS_ADDED
+        return Constants.ADDRESS_ADDED.value
 
 
 def change_address(args, assistant: PersonalAssistant):
@@ -238,7 +241,7 @@ def add_birthday(args, assistant: PersonalAssistant):
     else:
         record.add_birthday(birthday)
 
-        return constants.BIRTHDAY_ADDED
+        return Constants.BIRTHDAY_ADDED.value
 
 
 def change_birthday(args, assistant: PersonalAssistant):
@@ -266,14 +269,14 @@ def change_birthday(args, assistant: PersonalAssistant):
     else:
         record.edit_birthday(new_birthday)
 
-        return constants.BIRTHDAY_UPDATED
+        return Constants.BIRTHDAY_UPDATED.value
 
 
 @input_error
 def add_note(notes: Notes):
 
     while True:
-        user_note = input('Type the note: ')
+        user_note = input(Fore.LIGHTBLUE_EX + 'Type the note: ' + Fore.YELLOW)
         if user_note in ["close", "exit", "quit"]:
             print("You interrupted the input of a note")
             break
@@ -286,14 +289,20 @@ def add_note(notes: Notes):
         note = Note(user_note)
         notes.add_note(note)
 
-        for key, value in notes.data.items():
-            print(f"{key}: {value}")
+        # for key, value in notes.data.items():
+        #     print(f"{key}: {value}")
         break
 
-    return constants.NOTE_ADDED
+    return Fore.GREEN + Constants.NOTE_ADDED.value + Fore.RESET
 
 
-
+@input_error
+def show_notes(notes: Notes):
+    if len(notes) == 0:
+        print('There are no contacts')
+    else:
+        for key, note in notes.items():
+            print(f"Note_{key}: {note}")
 
 
 

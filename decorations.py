@@ -1,4 +1,4 @@
-import constants
+from constants import Constants
 from Exceptions import (
     PhoneNumberException,
     InvalidDateFormatException,
@@ -21,36 +21,36 @@ def input_error(func):
         try:
             return func(*args, **kwargs)
         except ValueError:
-            return constants.VALUE_ERROR
+            return Constants.VALUE_ERROR.value
         except KeyError:
-            return constants.KEY_ERROR
+            return Constants.KEY_ERROR.value
         except IndexError:
-            return constants.INDEX_ERROR
+            return Constants.INDEX_ERROR.value
         except PhoneNumberException:
-            return constants.PRECISE_DIGITS_ERROR
+            return Constants.PRECISE_DIGITS_ERROR.value
         except InvalidDateFormatException:
-            return constants.INVALID_FORMAT_ERROR
+            return Constants.INVALID_FORMAT_ERROR.value
         except InvalidDateValueException:
-            return constants.INVALID_DATE_VALUE_ERROR
+            return Constants.INVALID_DATE_VALUE_ERROR.value
         except InvalidNameException:
-            return constants.NAME_IS_NOT_VALID
+            return Constants.NAME_IS_NOT_VALID.value
         except PhoneIsAlreadyBelongingException:
-            return constants.PHONE_BELONGS_TO_CONTACT
+            return Constants.PHONE_BELONGS_TO_CONTACT.value
         except NoSuchContactException:
-            return constants.NO_SUCH_CONTACT
+            return Constants.NO_SUCH_CONTACT.value
         except NoSuchPhoneNumberException:
-            return constants.NO_SUCH_PHONE_NUMBER
+            return Constants.NO_SUCH_PHONE_NUMBER.value
         except EmailNotValidException:
-            return constants.EMAIL_IS_NOT_VALID
+            return Constants.EMAIL_IS_NOT_VALID.value
         except EmailAlreadyPresentException:
-            return constants.EMAIL_IS_ALREADY_PRESENT
+            return Constants.EMAIL_IS_ALREADY_PRESENT.value
         except ContactHasBirthdayException:
-            return constants.CONTACT_HAS_BIRTHDAY
+            return Constants.CONTACT_HAS_BIRTHDAY.value
         except AddressIsAlreadyPresent:
-            return constants.ADDRESS_IS_ALREADY_PRESENT
+            return Constants.ADDRESS_IS_ALREADY_PRESENT.value
         except EmptyNoteException:
-            return constants.EMPTY_NOTE
+            return Constants.EMPTY_NOTE.value
         except NoteExceedsMaxLength:
-            return constants.GREATER_THAN_MAX_LENGTH
+            return Constants.GREATER_THAN_MAX_LENGTH.value
 
     return inner
