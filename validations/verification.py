@@ -2,7 +2,7 @@ import re
 import calendar
 
 from messages.constants import Constants
-from decorations import input_error
+from decorators.decorations import input_error
 
 
 @input_error

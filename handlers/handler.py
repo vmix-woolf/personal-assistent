@@ -1,20 +1,20 @@
-from decorations import input_error
+from decorators.decorations import input_error
 from colorama import Fore
 
 from messages.constants import Constants
-from Record import Record
-from Notes import Notes
-from Note import Note
+from record import Record
+from notes import Notes
+from note import Note
 from personal_assistant import PersonalAssistant
 # from Constants import NOT_ENOUGH_ARGUMENTS
-from verification import (
+from validations.verification import (
     name_validation,
     phone_number_validation,
     email_validation,
     birthday_format_validation,
     birthday_value_validation
 )
-from Exceptions import (
+from exceptions.Exceptions import (
     PhoneNumberException,
     PhoneIsAlreadyBelongingException,
     NoSuchContactException,

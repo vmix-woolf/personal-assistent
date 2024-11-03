@@ -1,7 +1,7 @@
-from Field import Field
+from field import Field
 
 
-class Email(Field):
+class Phone(Field):
 
     def __init__(self, value):
         super().__init__(value)
