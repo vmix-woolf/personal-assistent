@@ -1,9 +1,7 @@
-from django.utils.termcolors import RESET
-
 from decorations import input_error
 from colorama import Fore
 
-from constants import Constants
+from messages.constants import Constants
 from Record import Record
 from Notes import Notes
 from Note import Note

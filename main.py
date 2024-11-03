@@ -1,8 +1,7 @@
 import pickle
-import constants
 from PersonalAssistant import PersonalAssistant
 from Notes import Notes
-from constants import Constants
+from messages.constants import Constants
 from Handler import (
     show_contacts,
     add_contact,

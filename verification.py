@@ -1,18 +1,21 @@
 import re
 import calendar
 
-from constants import Constants
+from messages.constants import Constants
 from decorations import input_error
 
 
+@input_error
 def name_validation(name):
     return True if bool(re.match(r'[A-Za-z]{2,25}', name)) else False
 
 
+@input_error
 def phone_number_validation(phone_number):
     return True if phone_number.isdigit() and len(phone_number) == Constants.NUMBER_OF_DIGITS_IN_PHONE_NUMBER.value else False
 
 
+@input_error
 def email_validation(email):
     return True if bool(re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$', email)) else False
 

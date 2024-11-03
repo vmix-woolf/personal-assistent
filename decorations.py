@@ -1,4 +1,4 @@
-from constants import Constants
+from messages.constants import Constants
 from Exceptions import (
     PhoneNumberException,
     InvalidDateFormatException,
