@@ -2,7 +2,6 @@ from Name import Name
 
 
 class Record:
-
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []

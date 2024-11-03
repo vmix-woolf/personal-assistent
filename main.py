@@ -27,8 +27,8 @@ from handlers.handler import (
 
 def main():
 
-    assistant = load_data_address_book(filename=Constants.ADDRESS_BOOK_FILE_PKL.value)
-    notes = load_data_notes(filename=Constants.NOTES_FILE_PKL.value)
+    assistant = load_data_address_book()
+    notes = load_data_notes()
     print(Constants.WELCOME_MESSAGE.value)
 
     while True:
@@ -80,19 +80,19 @@ def main():
             print(Constants.INVALID_COMMAND_ERROR.value)
 
 
-def save_data_address_book(assistant, filename="personal_assistant.pkl"):
+def save_data_address_book(assistant, filename=Constants.ADDRESS_BOOK_FILE_PKL.value):
     with open(filename, "wb") as fh:
         # noinspection PyTypeChecker
         pickle.dump(assistant, fh)
 
 
-def save_data_notes(notes, filename="notes.pkl"):
+def save_data_notes(notes, filename=Constants.NOTES_FILE_PKL.value):
     with open(filename, "wb") as fh:
         # noinspection PyTypeChecker
         pickle.dump(notes, fh)
 
 
-def load_data_address_book(filename="personal_assistant.pkl"):
+def load_data_address_book(filename=Constants.ADDRESS_BOOK_FILE_PKL.value):
     try:
         with open(filename, "rb") as fh:
             return pickle.load(fh)
@@ -100,7 +100,7 @@ def load_data_address_book(filename="personal_assistant.pkl"):
         return PersonalAssistant()
 
 
-def load_data_notes(filename="notes.pkl"):
+def load_data_notes(filename=Constants.NOTES_FILE_PKL.value):
     try:
         with open(filename, "rb") as fh:
             return pickle.load(fh)
