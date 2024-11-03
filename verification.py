@@ -22,7 +22,7 @@ def email_validation(email):
 
 @input_error
 def birthday_format_validation(birthday):
-    return True if bool(re.match(r'\d{2}\.\d{2}\.\d{4}', birthday)) else False
+    return True if bool(re.match(r'\d{1,2}\.\d{1,2}\.\d{4}', birthday)) else False
 
 
 @input_error
@@ -32,10 +32,13 @@ def birthday_value_validation(birthday):
     month = int(month)
     year = int(year)
 
-    if 9999 < year < 1:
+    if year < 1 or year > 9999:
         return False
 
-    if 12 < month < 1:
+    if month < 1 or month > 12:
+        return False
+
+    if day < 1 or day > 31:
         return False
 
     max_days = calendar.monthrange(year, month)[1]

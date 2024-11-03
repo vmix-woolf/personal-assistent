@@ -235,7 +235,7 @@ def add_birthday(args, assistant: PersonalAssistant):
         raise InvalidDateFormatException
 
     if not birthday_value_validation(birthday):
-        raise InvalidDateValueException('Incorrect date')
+        raise InvalidDateValueException
     else:
         record.add_birthday(birthday)
 
@@ -263,7 +263,7 @@ def change_birthday(args, assistant: PersonalAssistant):
         raise InvalidDateFormatException
 
     if not birthday_value_validation(new_birthday):
-        raise InvalidDateValueException('Incorrect date')
+        raise InvalidDateValueException
     else:
         record.edit_birthday(new_birthday)
 

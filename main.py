@@ -3,7 +3,7 @@ import pickle
 from personal_assistant import PersonalAssistant
 from Notes import Notes
 from messages.constants import Constants
-from Handler import (
+from handlers.Handler import (
     show_contacts,
     add_contact,
     change_contact,
