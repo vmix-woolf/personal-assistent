@@ -44,3 +44,6 @@ class Constants(Enum):
     # related to notes
     EMPTY_NOTE = "You cannot create an empty note."
     GREATER_THAN_MAX_LENGTH = "Note cannot be greater than the maximum length."
+    # related to file names
+    ADDRESS_BOOK_FILE_PKL = 'personal_assistant.pkl'
+    NOTES_FILE_PKL = 'notes.pkl'

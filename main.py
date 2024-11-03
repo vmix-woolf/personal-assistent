@@ -2,6 +2,7 @@ import pickle
 
 from personal_assistant import PersonalAssistant
 from notes import Notes
+from handlers.command_parser import parse_input
 from messages.constants import Constants
 from handlers.handler import (
     show_contacts,
@@ -25,8 +26,9 @@ from handlers.handler import (
 
 
 def main():
-    assistant = load_data()
-    notes = load_data_notes()
+
+    assistant = load_data_address_book(filename=Constants.ADDRESS_BOOK_FILE_PKL.value)
+    notes = load_data_notes(filename=Constants.NOTES_FILE_PKL.value)
     print(Constants.WELCOME_MESSAGE.value)
 
     while True:
@@ -34,8 +36,8 @@ def main():
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit", "quit"]:
-            save_data(assistant)
-            save_data_notes(notes)
+            save_data_address_book(assistant, Constants.ADDRESS_BOOK_FILE_PKL.value)
+            save_data_notes(notes, Constants.NOTES_FILE_PKL.value)
             print("Good bye!")
             break
         elif command == "hello":
@@ -78,26 +80,19 @@ def main():
             print(Constants.INVALID_COMMAND_ERROR.value)
 
 
-def parse_input(user_input):
-    cmd, *args = user_input.split()
-    cmd = cmd.strip().lower()
-
-    return cmd, *args
-
-
-def save_data(book, filename="personal_assistant.pkl"):
+def save_data_address_book(assistant, filename="personal_assistant.pkl"):
     with open(filename, "wb") as fh:
         # noinspection PyTypeChecker
-        pickle.dump(book, fh)
+        pickle.dump(assistant, fh)
 
 
-def save_data_notes(book, filename="notes.pkl"):
+def save_data_notes(notes, filename="notes.pkl"):
     with open(filename, "wb") as fh:
         # noinspection PyTypeChecker
-        pickle.dump(book, fh)
+        pickle.dump(notes, fh)
 
 
-def load_data(filename="personal_assistant.pkl"):
+def load_data_address_book(filename="personal_assistant.pkl"):
     try:
         with open(filename, "rb") as fh:
             return pickle.load(fh)
@@ -111,7 +106,6 @@ def load_data_notes(filename="notes.pkl"):
             return pickle.load(fh)
     except FileNotFoundError:
         return Notes()
-
 
 if __name__ == "__main__":
     main()
