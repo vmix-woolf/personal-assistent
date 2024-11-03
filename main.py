@@ -107,5 +107,6 @@ def load_data_notes(filename=Constants.NOTES_FILE_PKL.value):
     except FileNotFoundError:
         return Notes()
 
+
 if __name__ == "__main__":
     main()

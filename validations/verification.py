@@ -27,6 +27,7 @@ def birthday_format_validation(birthday):
 
 @input_error
 def birthday_value_validation(birthday):
+
     day, month, year = birthday.split('.')
     day = int(day)
     month = int(month)

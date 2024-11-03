@@ -6,7 +6,6 @@ from record import Record
 from notes import Notes
 from note import Note
 from personal_assistant import PersonalAssistant
-# from Constants import NOT_ENOUGH_ARGUMENTS
 from validations.verification import (
     name_validation,
     phone_number_validation,
@@ -301,6 +300,3 @@ def show_notes(notes: Notes):
     else:
         for key, note in notes.items():
             print(f"Note_{key}: {note}")
-
-
-
