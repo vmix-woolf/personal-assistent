@@ -1,5 +1,6 @@
 import pickle
-from PersonalAssistant import PersonalAssistant
+
+from personal_assistant import PersonalAssistant
 from Notes import Notes
 from messages.constants import Constants
 from Handler import (

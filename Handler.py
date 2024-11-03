@@ -5,7 +5,7 @@ from messages.constants import Constants
 from Record import Record
 from Notes import Notes
 from Note import Note
-from PersonalAssistant import PersonalAssistant
+from personal_assistant import PersonalAssistant
 # from Constants import NOT_ENOUGH_ARGUMENTS
 from verification import (
     name_validation,

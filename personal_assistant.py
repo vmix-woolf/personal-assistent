@@ -1,14 +1,14 @@
 from collections import UserDict
 
-from numpy.ma.core import indices
-
 
 class PersonalAssistant(UserDict):
 
     def add_record(self, contact):
         record_indices = self.data.keys()
-        self.data[max(record_indices) + 1] = contact
-
+        if len(record_indices) == 0:
+            self.data[0] = contact
+        else:
+            self.data[max(record_indices) + 1] = contact
 
     def find_record(self, contact_name):
         for _, record in self.data.items():
