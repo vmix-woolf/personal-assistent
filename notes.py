@@ -4,5 +4,9 @@ from collections import UserDict
 class Notes(UserDict):
 
     def add_note(self, note):
-        last_record_index = len(self.data)
-        self.data[last_record_index + 1] = note
+        notes_indices = self.data.keys()
+
+        if len(notes_indices) == 0:
+            self.data[0] = note
+        else:
+            self.data[max(notes_indices) + 1] = note
