@@ -3,9 +3,9 @@ from colorama import Fore
 
 from messages.constants import Constants
 from assistant.record import Record
-from notes import Notes
-from note import Note
-from personal_assistant import PersonalAssistant
+from textbook.notes import Notes
+from textbook.note import Note
+from assistant.addressbook import PersonalAssistant
 from validations.verification import (
     name_validation,
     phone_number_validation,
@@ -286,7 +286,7 @@ def add_note(notes: Notes):
         note = Note(user_note)
         notes.add_note(note)
 
-        # for key, value in notes.data.items():
+        # for key, value in textbook.data.items():
         #     print(f"{key}: {value}")
         break
 

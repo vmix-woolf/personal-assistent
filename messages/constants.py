@@ -41,9 +41,9 @@ class Constants(Enum):
     TITLE_TO_CONGRATULATE = "It's necessary to congratulate the following contacts:"
     # related to address
     ADDRESS_IS_ALREADY_PRESENT = "This contact has an address already. To change it please use 'change-...' command."
-    # related to notes
+    # related to textbook
     EMPTY_NOTE = "You cannot create an empty note."
     GREATER_THAN_MAX_LENGTH = "Note cannot be greater than the maximum length."
     # related to file names
-    ADDRESS_BOOK_FILE_PKL = 'personal_assistant.pkl'
-    NOTES_FILE_PKL = 'notes.pkl'
+    ADDRESS_BOOK_FILE_PKL = 'assistant/addressbook.pkl'
+    TEXTBOOK_FILE_PKL = 'assistant/textbook.pkl'
