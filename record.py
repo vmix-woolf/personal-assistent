@@ -55,13 +55,13 @@ class Record:
         pass
 
     def delete_street(self, name):
-            pass
+        pass
 
     def delete_building(self, name):
-            pass
+        pass
 
     def delete_apartment(self, name):
-            pass
+        pass
 
     def __str__(self):
         basic_message = f"Contact name: {self.name.value}, phones: {'; '.join(p for p in self.phones)}"
