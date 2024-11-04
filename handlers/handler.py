@@ -1,5 +1,7 @@
+import re
 from decorators.decorations import input_error
 from colorama import Fore
+from datetime import datetime as dt, timedelta
 
 from messages.constants import Constants
 from assistant.record import Record
@@ -27,7 +29,9 @@ from exceptions.exceptions import (
     NoBirthdayException,
     AddressIsAlreadyPresent,
     EmptyNoteException,
-    NoteExceedsMaxLength, NotEnoughArguments
+    NoteExceedsMaxLength,
+    NotEnoughArguments,
+    WrongNumberOfDays
 )
 
 
@@ -267,6 +271,59 @@ def change_birthday(args, assistant: PersonalAssistant):
         record.edit_birthday(new_birthday)
 
         return Constants.BIRTHDAY_UPDATED.value
+
+
+@input_error
+def birthdays(args, assistant):
+    days_qty, *_ = args
+
+    if len(args) < 1:
+        raise ValueError
+
+    if not (re.match(r'\d+', days_qty) and days_qty != 0):
+        raise WrongNumberOfDays
+
+    if len(assistant) == 0:
+        print(Constants.CONTACT_LIST_EMPTY.value)
+    else:
+        upcoming_birthdays = []
+        today = dt.today().date()
+
+        for user in assistant.values():
+            if user.birthday is None:
+                continue
+
+            birthday_date = dt.strptime(user.birthday, "%d.%m.%Y")
+            birthday_this_year = birthday_date.date().replace(year=today.year)
+
+            if birthday_this_year < today:
+                next_birthday = birthday_this_year.replace(year=today.year + 1)
+            else:
+                next_birthday = birthday_this_year
+
+            if (next_birthday - today).days <= int(days_qty):
+                upcoming_birthday = {
+                    "name": user.name.value,
+                    "congratulation_date": dt.strftime(birthday_this_year, '%d.%m.%Y')
+                }
+            else:
+                continue
+
+            upcoming_birthdays.append(upcoming_birthday)
+
+        if upcoming_birthdays:
+            print_contacts = congratulate_birthday_contacts(upcoming_birthdays)
+            print(Constants.TITLE_TO_CONGRATULATE.value)
+            for value in print_contacts:
+                print(value)
+            # for item in upcoming_birthdays:
+            #     yield f"Contact {item['name']} should be mailed {item['congratulation_date']}"
+        else:
+            return Constants.NO_NECESSARY_TO_CONGRATULATE.value
+
+def congratulate_birthday_contacts(contacts):
+    for contact in contacts:
+        yield contact
 
 
 @input_error

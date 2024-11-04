@@ -42,3 +42,6 @@ class EmptyNoteException(Exception):
 
 class NoteExceedsMaxLength(Exception):
     pass
+
+class WrongNumberOfDays(Exception):
+    pass

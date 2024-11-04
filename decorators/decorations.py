@@ -12,7 +12,8 @@ from exceptions.exceptions import (
     ContactHasBirthdayException,
     AddressIsAlreadyPresent,
     EmptyNoteException,
-    NoteExceedsMaxLength
+    NoteExceedsMaxLength,
+    WrongNumberOfDays
 )
 
 
@@ -52,5 +53,7 @@ def input_error(func):
             return Constants.EMPTY_NOTE.value
         except NoteExceedsMaxLength:
             return Constants.GREATER_THAN_MAX_LENGTH.value
+        except WrongNumberOfDays:
+            return Constants.NATURAL_NUMBER_ERROR.value
 
     return inner

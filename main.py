@@ -21,7 +21,8 @@ from handlers.handler import (
     change_birthday,
     showcase_contact,
     add_note,
-    show_notes
+    show_notes,
+    birthdays
 )
 
 
@@ -45,6 +46,7 @@ def main():
         "remove-apartment": lambda arguments: remove_apartment(arguments, assistant),
         "add-birthday": lambda arguments: add_birthday(arguments, assistant),
         "change-birthday": lambda arguments: change_birthday(arguments, assistant),
+        "birthdays": lambda arguments: birthdays(arguments, assistant),
         "add-note": lambda _: add_note(notes),
         "all-textbook": lambda _: show_notes(notes),
         "all": lambda _: show_contacts(assistant),

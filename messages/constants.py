@@ -37,8 +37,9 @@ class Constants(Enum):
     INVALID_FORMAT_ERROR = "Invalid date format. Use DD.MM.YYYY"
     INVALID_DATE_VALUE_ERROR = "Invalid date value. Use correct date."
     CONTACT_HAS_BIRTHDAY = "This contact has already their birthday"
-    NO_NECESSARY_TO_CONGRATULATE = "There are no letters scheduled to be mailed in the next week."
+    NO_NECESSARY_TO_CONGRATULATE = "There are no contacts to be mailed in the coming days."
     TITLE_TO_CONGRATULATE = "It's necessary to congratulate the following contacts:"
+    NATURAL_NUMBER_ERROR = "The number of days must be a natural number"
     # related to address
     ADDRESS_IS_ALREADY_PRESENT = "This contact has an address already. To change it please use 'change-...' command."
     # related to textbook
