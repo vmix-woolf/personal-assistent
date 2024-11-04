@@ -1,5 +1,5 @@
 from messages.constants import Constants
-from exceptions.Exceptions import (
+from exceptions.exceptions import (
     PhoneNumberException,
     InvalidDateFormatException,
     InvalidDateValueException,

@@ -1,4 +1,4 @@
-from Name import Name
+from assistant.Name import Name
 
 
 class Record:

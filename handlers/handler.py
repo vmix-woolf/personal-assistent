@@ -2,7 +2,7 @@ from decorators.decorations import input_error
 from colorama import Fore
 
 from messages.constants import Constants
-from record import Record
+from assistant.record import Record
 from notes import Notes
 from note import Note
 from personal_assistant import PersonalAssistant
@@ -13,7 +13,7 @@ from validations.verification import (
     birthday_format_validation,
     birthday_value_validation
 )
-from exceptions.Exceptions import (
+from exceptions.exceptions import (
     PhoneNumberException,
     PhoneIsAlreadyBelongingException,
     NoSuchContactException,

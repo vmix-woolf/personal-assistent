@@ -1,7 +1,7 @@
 import pickle
 
-from personal_assistant import PersonalAssistant
 from notes import Notes
+from personal_assistant import PersonalAssistant
 from handlers.command_parser import parse_input
 from messages.constants import Constants
 from handlers.handler import (
@@ -28,7 +28,7 @@ from handlers.handler import (
 def main():
 
     assistant = load_data_address_book()
-    notes = load_data_notes()
+    all_notes = load_data_notes()
     print(Constants.WELCOME_MESSAGE.value)
 
     while True:
@@ -36,8 +36,8 @@ def main():
         command, *args = parse_input(user_input)
 
         if command in ["close", "exit", "quit"]:
-            save_data_address_book(assistant, Constants.ADDRESS_BOOK_FILE_PKL.value)
-            save_data_notes(notes, Constants.NOTES_FILE_PKL.value)
+            save_data_address_book(assistant)
+            save_data_notes(all_notes)
             print("Good bye!")
             break
         elif command == "hello":
@@ -71,9 +71,9 @@ def main():
         elif command == "change-birthday":
             print(change_birthday(args, assistant))
         elif command == "add-note":
-            print(add_note(notes))
+            print(add_note(all_notes))
         elif command == "all-notes":
-            show_notes(notes)
+            show_notes(all_notes)
         elif command == "all":
             show_contacts(assistant)
         else:
@@ -86,10 +86,10 @@ def save_data_address_book(assistant, filename=Constants.ADDRESS_BOOK_FILE_PKL.v
         pickle.dump(assistant, fh)
 
 
-def save_data_notes(notes, filename=Constants.NOTES_FILE_PKL.value):
+def save_data_notes(all_notes, filename=Constants.NOTES_FILE_PKL.value):
     with open(filename, "wb") as fh:
         # noinspection PyTypeChecker
-        pickle.dump(notes, fh)
+        pickle.dump(all_notes, fh)
 
 
 def load_data_address_book(filename=Constants.ADDRESS_BOOK_FILE_PKL.value):
